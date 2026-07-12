@@ -26,8 +26,9 @@ public class CommitScheduler {
 
 
     // Runs every day at 9 AM
+    //@Scheduled(cron = "0 30 17 * * MON-FRI", zone = "America/New_York")
     @Scheduled(cron = "0 */1 * * * ?")
-    public void executeCommitJob(){
+    public void executeCommitJob() throws InterruptedException {
 
 
         Random random = new Random();
@@ -44,6 +45,7 @@ public class CommitScheduler {
         for(int i=1;i<=commitCount;i++){
 
             gitCommitService.createCommit(i);
+            Thread.sleep(5000);
 
         }
 

@@ -1,6 +1,7 @@
 package com.rohith.github_auto_commit.service;
 
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.io.BufferedWriter;
@@ -12,15 +13,12 @@ import java.time.LocalDateTime;
 public class GitCommitService {
 
 
-    private final String repoPath =
-            "C:\\Users\\rohit\\WorkPlace\\eclipseProjects\\github-auto-commit";
+    @Value("${github.repo.path}")
+    private String repoPath;
 
-    public void createCommit(int number){
-
-
+    public void createCommit(int number) {
+        System.out.println("Repository Path: " + repoPath);
         try {
-
-
             // Create/change file
             String file =
                     repoPath + "/commit.txt";
