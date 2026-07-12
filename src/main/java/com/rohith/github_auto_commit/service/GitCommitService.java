@@ -17,7 +17,7 @@ public class GitCommitService {
     private String repoPath;
 
     public void createCommit(int number) {
-        System.out.println("Repository Path: " + repoPath);
+       // System.out.println("Repository Path: " + repoPath);
         try {
             // Create/change file
             String file =

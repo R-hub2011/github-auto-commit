@@ -45,8 +45,7 @@ public class CommitScheduler {
         for(int i=1;i<=commitCount;i++){
 
             gitCommitService.createCommit(i);
-            Thread.sleep(5000);
-
+            Thread.sleep(300000);
         }
 
     }
