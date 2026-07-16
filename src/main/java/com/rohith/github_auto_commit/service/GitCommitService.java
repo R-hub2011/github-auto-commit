@@ -41,7 +41,7 @@ public class GitCommitService {
 
             writer.close();
 
-
+            System.out.println("File updated success");
 
             executeCommand(
                     "git add ."
@@ -84,7 +84,7 @@ public class GitCommitService {
         ProcessBuilder builder = new ProcessBuilder();
 
         if (os.contains("win")) {
-
+        System.out.println("executeCommand os.contains = 'win'");
             // Windows
             builder.command(
                     "cmd",
@@ -95,6 +95,7 @@ public class GitCommitService {
         } else {
 
             // Linux
+            System.out.println("executeCommand os.contains = 'Linux'");
             builder.command(
                     "bash",
                     "-c",
