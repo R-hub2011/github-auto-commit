@@ -26,8 +26,8 @@ public class CommitScheduler {
 
 
     // Runs every day at 9 AM
-    //@Scheduled(cron = "0 30 17 * * MON-FRI", zone = "America/New_York")
-    @Scheduled(cron = "0 */1 * * * ?")
+    @Scheduled(cron = "0 30 17 * * MON-FRI", zone = "America/New_York")
+    //@Scheduled(cron = "0 */1 * * * ?")
     public void executeCommitJob() throws InterruptedException {
 
 
