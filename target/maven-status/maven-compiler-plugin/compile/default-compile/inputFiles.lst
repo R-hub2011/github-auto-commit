@@ -1,0 +1,3 @@
+/opt/github-auto-commit/github-auto-commit/src/main/java/com/rohith/github_auto_commit/GithubAutoCommitApplication.java
+/opt/github-auto-commit/github-auto-commit/src/main/java/com/rohith/github_auto_commit/scheduler/CommitScheduler.java
+/opt/github-auto-commit/github-auto-commit/src/main/java/com/rohith/github_auto_commit/service/GitCommitService.java
