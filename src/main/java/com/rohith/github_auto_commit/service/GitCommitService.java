@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.time.LocalDateTime;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 
 
 @Service
@@ -32,20 +34,7 @@ public class GitCommitService {
             writer.write(
                     "Commit number "
                             + number
-                            + " created at "
-                            + LocalDateTime.now()
-            );
-
-
-            writer.newLine();
-
-            writer.close();
-
-            System.out.println("File updated success");
-
-            executeCommand(
-                    "git add ."
-            );
+                   executeCommand
 
 
             executeCommand(
@@ -79,37 +68,35 @@ public class GitCommitService {
 
     private void executeCommand(String command) throws Exception {
 
-        String os = System.getProperty("os.name").toLowerCase();
+    System.out.println("Executing: " + command);
 
-        ProcessBuilder builder = new ProcessBuilder();
+    ProcessBuilder builder = new ProcessBuilder(
+            "bash",
+            "-c",
+            "cd \"" + repoPath + "\" && " + command
+    );
 
-        if (os.contains("win")) {
-        System.out.println("executeCommand os.contains = 'win'");
-            // Windows
-            builder.command(
-                    "cmd",
-                    "/c",
-                    "cd /d " + repoPath + " && " + command
-            );
+    builder.redirectErrorStream(true);
 
-        } else {
+    Process process = builder.start();
 
-            // Linux
-            System.out.println("executeCommand os.contains = 'Linux'");
-            builder.command(
-                    "bash",
-                    "-c",
-                    "cd " + repoPath + " && " + command
-            );
+    try (BufferedReader reader = new BufferedReader(
+            new InputStreamReader(process.getInputStream()))) {
+
+        String line;
+        while ((line = reader.readLine()) != null) {
+            System.out.println(line);
         }
-
-
-        Process process = builder.start();
-
-        process.waitFor();
-
-
     }
+
+    int exitCode = process.waitFor();
+
+    System.out.println("Exit Code: " + exitCode);
+
+    if (exitCode != 0) {
+        throw new RuntimeException("Command failed: " + command);
+    }
+}
 
 
 }
