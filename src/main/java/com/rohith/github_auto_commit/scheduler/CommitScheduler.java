@@ -29,7 +29,7 @@ public class CommitScheduler {
     };
 
     @Scheduled(
-            cron = "0  * *  * * *",
+            cron = "0 15 22 * * *",
             zone = "America/New_York"
     )
     public void executeCommitJob() throws InterruptedException {
@@ -62,9 +62,9 @@ public class CommitScheduler {
         for(int i = 1; i <= commits; i++){
             gitCommitService.createCommit(i);
 
-            // Heads up: 300000ms is 5 minutes. 6 commits will take 25 minutes to finish execution loop.
+            // Heads up: 60000ms is 1 minutes. 6 commits will take 6 minutes to finish execution loop.
             if (i < commits) {
-                Thread.sleep(300000);
+                Thread.sleep(60000);
             }
         }
     }
