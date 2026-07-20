@@ -29,7 +29,7 @@ public class CommitScheduler {
     };
 
     @Scheduled(
-            cron = "0 45 20 * * *",
+            cron = "0  * *  * * *",
             zone = "America/New_York"
     )
     public void executeCommitJob() throws InterruptedException {
