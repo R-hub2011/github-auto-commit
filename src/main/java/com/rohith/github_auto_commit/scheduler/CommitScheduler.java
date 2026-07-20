@@ -12,7 +12,7 @@ public class CommitScheduler {
     private final GitCommitService gitCommitService;
 
     // ANCHOR: Hardcode the exact Sunday you want the grid pattern to start
-    private static final LocalDate START_DATE = LocalDate.of(2026, 7, 26);
+    private static final LocalDate START_DATE = LocalDate.of(2026, 7, 19);
 
     public CommitScheduler(GitCommitService gitCommitService){
         this.gitCommitService = gitCommitService;
@@ -29,7 +29,7 @@ public class CommitScheduler {
     };
 
     @Scheduled(
-            cron = "0 30 17 * * *",
+            cron = "0 45 20 * * *",
             zone = "America/New_York"
     )
     public void executeCommitJob() throws InterruptedException {
